@@ -6,9 +6,12 @@
 :root {
     --logo-height: 100px;
     --evil-space-corp-font: 'aspaceregular';
-    --widget-width: 350px;
-    --widget-height: 200px;
+    --widget-width: 20rem;
+    --widget-height: 15rem;
     --header-text-width: 500px;
+    --grey: rgb(17, 17, 17);
+    --grey-dark: rgb(10, 10, 10);
+    --grey-light: rgb(62, 62, 62);
 }
 
 * {
@@ -33,12 +36,11 @@ img {
     background-color: black;
     width: 100vw;
     height: 100vh;
-    overflow: none;
 }
 
 #dash-nav {
     grid-row: 1 / -2;
-    background-color: rgb(10, 10, 10);
+    background-color: var(--grey-dark);
 
     display: grid;
     grid: var(--logo-height) 1fr / 1fr;
@@ -57,24 +59,19 @@ nav {
 }
 
 #dash-main {
-    padding: 20px;
 
     grid-area: 2 / 2 / -2 / -1;
-    background-color: rgb(85, 77, 77);
+    background-color: var(--grey-light);
 
     display: grid;
-    grid-template-rows: var(--widget-height) var(--widget-height);
-    grid-template-columns: repeat(auto-fill, var(--widget-width));
-    grid-auto-rows: var(--widget-height);
-    gap: 20px;
-    align-content: center;
+    grid: 1fr / 8fr 1fr;
 }
 
 header {
     grid-area: 1 / 2 / 2 / -1;
     width: 100%;
     height: var(--logo-height);
-    background-color: rgb(17, 17, 17);
+    background-color: var(--grey);
 
     display: grid;
     grid: 1fr / var(--header-text-width) 1fr;
@@ -97,21 +94,46 @@ footer {
     background-color: aqua;
     grid-row: 3;
     grid-column: 1 / -1;
+    background-color: rgb(17, 17, 17);
+    text-align: center;
 }
 
 /* ///////////////////////////////////////// */
 
+#widget-panel {
+    grid-area: 1 / 1 / -1 / 2;
+    display: flex;
+    flex-wrap: wrap;
+}
+
 .widget {
+    font-family: Helvetica, sans-serif;
+
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+    padding: 20px;
     width: var(--widget-width);
-    height: var(--widget-height);
+    min-height: var(--widget-height);
     background-color: rgb(255, 255, 255);
+    border-radius: 15px;
+}
+
+.widget>h2 {
+    letter-spacing: -1px;
+}
+
+#test {
+    grid-area: 1 / 2 / -1 / -1;
+    background-color: var(--grey-light);
+    border-left: silver 10px solid;
+    box-shadow: -5px 0px 6px 0px rgba(0, 0, 0, 0.42);
 }
 
 .nav-link {
     font-family: Arial, Helvetica, sans-serif;
     color: white;
     padding: 1rem;
-
 }
 
 .nav-link>a:hover {
