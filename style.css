@@ -6,12 +6,17 @@
 :root {
     --logo-height: 100px;
     --evil-space-corp-font: 'aspaceregular';
-    --widget-width: 20rem;
-    --widget-height: 15rem;
+
+    --widget-width: 100%;
+    --widget-height: 100%;
+    --widget-button-width: 40px;
+
     --header-text-width: 500px;
     --grey: rgb(17, 17, 17);
     --grey-dark: rgb(10, 10, 10);
     --grey-light: rgb(62, 62, 62);
+
+    --default-font: Helvetica, sans-serif;
 }
 
 * {
@@ -64,7 +69,7 @@ nav {
     background-color: var(--grey-light);
 
     display: grid;
-    grid: 1fr / 8fr 1fr;
+    grid: 1fr / 4fr 1fr;
 }
 
 header {
@@ -102,32 +107,114 @@ footer {
 
 #widget-panel {
     grid-area: 1 / 1 / -1 / 2;
-    display: flex;
-    flex-wrap: wrap;
+
+    display: grid;
+    grid: repeat(3, 1fr) / repeat(3, 1fr);
+    gap: 10px;
+
+    grid-template-areas:
+        "earnings stats kpi"
+        "allies ... ...";
+
+    margin: 18px;
 }
 
 .widget {
-    font-family: Helvetica, sans-serif;
+    font-family: var(--default-font);
 
     display: flex;
     flex-direction: column;
-    margin: 20px;
-    padding: 20px;
+    justify-content: space-between;
+
+    padding: 25px;
+    box-sizing: border-box;
+
     width: var(--widget-width);
-    min-height: var(--widget-height);
+    height: var(--widget-height);
     background-color: rgb(255, 255, 255);
     border-radius: 15px;
+    place-self: center;
+
+}
+
+.earnings {
+    grid-area: earnings;
+}
+
+.stats {
+    grid-area: stats;
+}
+
+.kpi {
+    grid-area: kpi;
+}
+
+.allies {
+    grid-area: allies;
 }
 
 .widget>h2 {
     letter-spacing: -1px;
+    font-size: 33.69px;
+    margin-bottom: -30px;
 }
 
-#test {
+.widget-buttons {
+    display: flex;
+    justify-content: end;
+    align-items: end;
+    gap: 10px;
+}
+
+.widget-button {
+    width: var(--widget-button-width);
+    aspect-ratio: 1;
+    border-radius: 7px;
+}
+
+.widget-button:nth-child(1) {
+    width: calc(var(--widget-button-width) * 2);
+    aspect-ratio: 2/1;
+}
+
+#updates-panel>* {
+    font-family: var(--default-font);
+}
+
+#updates-panel {
     grid-area: 1 / 2 / -1 / -1;
+    display: flex;
     background-color: var(--grey-light);
-    border-left: silver 10px solid;
-    box-shadow: -5px 0px 6px 0px rgba(0, 0, 0, 0.42);
+    border-left: rgb(217, 198, 198) 2px solid;
+    width: 15rem%;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+}
+
+#updates-panel>h2 {
+    color: aqua;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+    box-sizing: border-box;
+    padding: 20px;
+}
+
+.update-content-widget {
+    width: 80%;
+    height: calc(80%*2);
+    background-color: aqua;
+    border-radius: 7px;
+}
+
+.update-header {
+    font-size: 18px;
+    padding: 10px;
+    text-align: center;
+}
+
+.update-content-widget p {
+    text-align: center;
+    padding: 5px;
 }
 
 .nav-link {
@@ -139,6 +226,7 @@ footer {
 .nav-link>a:hover {
     opacity: .7;
 }
+
 
 .current-page {
     color: rgba(255, 255, 255, 0.467);
